@@ -7,12 +7,13 @@ from user_code.evaluation import evaluate as TemplateProgram_evaluate
 
 def main():
     
-    
     ideasearcher = IdeaSearcher()
+    
+    # set language (default: zh)
+    # ideasearcher.set_language("en")
     
     # load models
     ideasearcher.set_api_keys_path("api_keys.json")
-    ideasearcher.load_models()
     
     # set minimum required parameters
     ideasearcher.set_program_name("TemplateProgram")
@@ -23,27 +24,28 @@ def main():
     ideasearcher.set_models([
         "Deepseek_V3",
     ])
-
-    # add two islands
-    ideasearcher.add_island()
-    ideasearcher.add_island()
     
-    # Evolve for three cycles, 10 epochs on each island per cycle with ideas repopulated at the end
-    for cycle in range(1, 4):
+    # set optional parameters
+    ideasearcher.set_model_temperatures([
+        1.2,
+    ])
+    ideasearcher.set_load_idea_skip_evaluation(False)
+    
+    ideasearcher.set_assess_interval(10)
+
+    island_num = 1
+    cycle_num = 1
+    unit_interaction_num = 20
+    
+    for _ in range(island_num):
+        ideasearcher.add_island()
         
-        ideasearcher.run(10)
-        ideasearcher.repopulate_islands()
+    for cycle in range(cycle_num):
         
-        best_idea = ideasearcher.get_best_idea()
-        best_score = ideasearcher.get_best_score()
-        print(
-            f"【第{cycle}轮】"
-            f"目前最高得分{best_score:.2f}，这个idea是：\n"
-            f"{best_idea}\n"
-        )
-        
-    # shutdown models
-    ideasearcher.shutdown_models()
+        if cycle != 0:
+            ideasearcher.repopulate_islands()
+    
+        ideasearcher.run(unit_interaction_num)
 
 
 if __name__ == "__main__":

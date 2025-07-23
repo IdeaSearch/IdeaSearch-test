@@ -1,2 +1,3 @@
-天若有情天亦老，
-人间正道是沧桑。
+def f(x):
+    import numpy as np
+    return np.exp(x) + 10
