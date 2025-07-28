@@ -11,8 +11,8 @@ def main():
     
     ideasearcher = IdeaSearcher()
     
-    # set language (default: zh)
-    ideasearcher.set_language("en")
+    # set language (default: zh; available: zh, en)
+    ideasearcher.set_language("zh")
     
     # set your api keys
     ideasearcher.set_api_keys_path("api_keys.json")
@@ -48,8 +48,8 @@ def main():
     # set running settings
     # total_interaction_num = island_num * cycle_num * unit_interaction_num
     
-    island_num = 1
-    cycle_num = 1
+    island_num = 2
+    cycle_num = 3
     unit_interaction_num = 10
     
     # start running
