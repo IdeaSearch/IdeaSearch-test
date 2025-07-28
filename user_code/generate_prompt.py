@@ -18,7 +18,7 @@ def generate_prompt_func(
     # 当前策略：取后 nmax 个得分作为代表
     chosen_indexs = list(range(len(scores) - nmax, len(scores)))
 
-    prompt = '给你一些示例函数，请你参考它们设计一个更好拟合程度的函数。'
+    prompt = '给你一些示例idea，请你参考它们设计一个更好的idea。'
     info = infos[chosen_indexs[0]]
     assert info is not None
     prompt += f'\n\n此函数可以用于拟合 EEC，它的综合得分是 {scores[chosen_indexs[0]]}\n' + info

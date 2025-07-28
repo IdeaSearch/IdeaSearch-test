@@ -26,6 +26,8 @@ def main():
     additional_freedom_needed = True
     
     if additional_freedom_needed:
+        
+        # experimental and less recommended
         ideasearcher.set_generate_prompt_func(TemplateProgram_generate_prompt_func)
         
     else:
@@ -42,7 +44,9 @@ def main():
     ideasearcher.set_model_temperatures([
         1.2,
     ])
+    ideasearcher.set_record_prompt_in_diary(True)
 
+    # add initial ideas if you don't want to dive into file system
     ideasearcher.add_initial_ideas(TemplateProgram_initial_ideas)
     
     # set running settings

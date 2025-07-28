@@ -1,6 +1,7 @@
-import hashlib
+import numpy as np
 from typing import Optional
 from typing import Tuple
+from threading import Lock
 
 
 __all__ = [
@@ -8,22 +9,9 @@ __all__ = [
 ]
 
 
-def string_to_score(
-    s: str,
-)-> float:
-    
-    # 计算 SHA256 哈希值
-    hash_bytes = hashlib.sha256(s.encode()).digest()
-    
-    # 取前 4 个字节，转为整数
-    hash_int = int.from_bytes(hash_bytes[:4], 'big')
-    
-    # 映射到 0 ~ 10000 之间的整数
-    score = hash_int % 10001
-    
-    # 转为两位小数
-    return round(score / 100, 2)
-
+evaluate_random_generator = np.random.default_rng()
+evaluate_upper_bound = 5.0
+evaluate_lock = Lock()
 
 def evaluate(
     idea: str,
@@ -41,6 +29,18 @@ def evaluate(
             - str: 对回答的简要评语或解释信息（可为 None）。
     """
     
-    score = string_to_score(idea)
-    info = "非常好！" if score >= 80.0 else "一般般！"
-    return score, info
+    with evaluate_lock:
+    
+        global evaluate_upper_bound
+        global evaluate_random_generator
+        
+        score = evaluate_random_generator.uniform(0.0, evaluate_upper_bound)
+        evaluate_upper_bound = min(
+            max(
+                0,
+                evaluate_upper_bound + evaluate_random_generator.uniform(-1.0, 4.0),
+            ),
+            100.0
+        )
+        info = "非常好！" if score >= 80.0 else "一般般！"
+        return score, info
