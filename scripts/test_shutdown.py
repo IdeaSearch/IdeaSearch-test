@@ -23,7 +23,7 @@ def main():
     
     ideasearcher.set_evaluate_func(TemplateProgram_evaluate)
     
-    additional_freedom_needed = True
+    additional_freedom_needed = False
     
     if additional_freedom_needed:
         
@@ -46,7 +46,7 @@ def main():
     ])
     ideasearcher.set_record_prompt_in_diary(True)
     
-    ideasearcher.set_shutdown_score(40.0)
+    ideasearcher.set_shutdown_score(20.0)
 
     # add initial ideas if you don't want to dive into file system
     ideasearcher.add_initial_ideas(TemplateProgram_initial_ideas)
