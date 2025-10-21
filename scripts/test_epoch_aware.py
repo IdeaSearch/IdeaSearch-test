@@ -20,7 +20,7 @@ def main():
     ideasearcher.add_initial_ideas(TemplateProgram_initial_ideas)
     
     island_num = 2
-    cycle_num = 1
+    cycle_num = 3
     unit_interaction_num = 10
     
     for _ in range(island_num):
