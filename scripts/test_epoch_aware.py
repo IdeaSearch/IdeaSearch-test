@@ -28,6 +28,7 @@ def main():
         
     for cycle in range(cycle_num):
         ideasearcher.set_models(["Deepseek_V3"] * (cycle + 1))
+        ideasearcher.set_model_temperatures([0.9 + 0.1 * i for i in range(cycle + 1)])
         if cycle != 0: ideasearcher.repopulate_islands()
         ideasearcher.run(unit_interaction_num)
         
