@@ -44,6 +44,10 @@ def main():
         1.2,
     ])
     ideasearcher.set_record_prompt_in_diary(True)
+    
+    ideasearcher.set_potential_weight(1.0)
+    identify_func = lambda a, b: a and b and (abs(ord(a[0]) - ord(b[0])) < 5000)
+    ideasearcher.set_identify_func(identify_func)
 
     # add initial ideas if you don't want to dive into file system
     ideasearcher.add_initial_ideas(TemplateProgram_initial_ideas)
