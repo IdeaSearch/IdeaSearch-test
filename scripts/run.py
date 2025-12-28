@@ -23,7 +23,7 @@ def main():
     
     ideasearcher.set_evaluate_func(TemplateProgram_evaluate)
     
-    additional_freedom_needed = True
+    additional_freedom_needed = False
     
     if additional_freedom_needed:
         
@@ -36,7 +36,7 @@ def main():
         ideasearcher.set_epilogue_section(TemplateProgram_epilogue_section)
         
     ideasearcher.set_models([
-        "Deepseek_V3",
+        "GPT-5",
     ])
     
     
