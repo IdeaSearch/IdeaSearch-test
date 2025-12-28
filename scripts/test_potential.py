@@ -45,7 +45,7 @@ def main():
     ])
     ideasearcher.set_record_prompt_in_diary(True)
     
-    identify_func = lambda a, b: a and b and (int(ord(a[0]) / 5000) == int(ord(b[0]) / 5000))
+    identify_func = lambda a, b: a and b and (int(ord(a[0]) / 5000) == int(ord(b[0]) / 2000))
     ideasearcher.set_identify_func(identify_func)
     ideasearcher.set_potential_weight(1.0)
     ideasearcher.set_potential_sample_threshold(1)
