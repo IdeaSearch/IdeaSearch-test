@@ -51,6 +51,7 @@ def main():
     ideasearcher.set_potential_sample_threshold(1)
     ideasearcher.set_potential_normalization_mode("low_reject")
     ideasearcher.set_potential_regularization_alpha(1e-4)
+    ideasearcher.set_potential_confidence_ratio(1.0)
 
     # add initial ideas if you don't want to dive into file system
     ideasearcher.add_initial_ideas(TemplateProgram_initial_ideas)
